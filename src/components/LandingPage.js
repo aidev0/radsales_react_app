@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { AppBar, Toolbar, Typography, Button, Box, Grid } from '@mui/material';
 import { Link } from 'react-router-dom';
 import styled from '@emotion/styled';
@@ -75,54 +76,27 @@ const LandingContent = styled(Box)`
   justify-content: center;
   text-align: center;
   padding: 16px;
-  animation: fadeIn 1s ease-in-out;
-  
-  @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-  }
 `;
 
-const LoginButton = styled(Button)`
-  display: flex;
-  align-items: center;
-  padding: 8px 16px;
+const GetStartedButton = styled(Button)`
   background-color: #ff4081;
   color: white;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+  padding: 16px 32px;
+  margin-top: 32px;
   &:hover {
     background-color: #ff1a70;
   }
 `;
 
-const LoginIcon = styled(LockOutlinedIcon)`
-  margin-right: 8px;
-`;
-
-const Heading = styled(Typography)`
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  color: #ff4081;
-`;
-
-const SubHeading = styled(Typography)`
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 500;
-  margin-bottom: 16px;
-  color: white;
-`;
-
-const BodyText = styled(Typography)`
-  font-family: 'Montserrat', sans-serif;
-  max-width: 600px;
-  line-height: 1.6;
-  margin-bottom: 32px;
-  color: #e0e0e0;
-`;
-
 function LandingPage() {
   const { loginWithRedirect, logout, isAuthenticated } = useAuth0();
+  const navigate = useNavigate();
+
+  const handleGetStartedClick = () => {
+    navigate('/pricing');
+  };
 
   return (
     <div>
@@ -136,8 +110,8 @@ function LandingPage() {
             </Grid>
             <Grid item xs={4}>
               <NavLinks>
-                <Button color="inherit" component={Link} to="/salesnav-bot">
-                  SalesNav Bot
+                <Button color="inherit" component={Link} to="/your-ai-assistant">
+                  Your AI Assistant
                 </Button>
                 <Button color="inherit" component={Link} to="/pricing">
                   Pricing
@@ -158,13 +132,14 @@ function LandingPage() {
                     Log Out
                   </Button>
                 ) : (
-                  <LoginButton
+                  <Button
                     color="inherit"
                     onClick={() => loginWithRedirect()}
+                    sx={{ backgroundColor: '#ff4081', color: 'white', '&:hover': { backgroundColor: '#ff1a70' } }}
                   >
-                    <LoginIcon />
+                    <LockOutlinedIcon sx={{ marginRight: '8px' }} />
                     Login
-                  </LoginButton>
+                  </Button>
                 )}
               </AuthButtons>
             </Grid>
@@ -172,20 +147,27 @@ function LandingPage() {
         </Toolbar>
       </NavBar>
       <LandingContent>
-        <Heading variant="h1">
+        <Typography variant="h2" sx={{ fontFamily: 'Montserrat', fontWeight: '700', marginBottom: 2 }}>
           RadSales.ai
-        </Heading>
-        <SubHeading variant="h4">
+        </Typography>
+        <Typography variant="h4" sx={{ fontFamily: 'Montserrat', marginBottom: 4 }}>
           Sales Outreach AI Autopilot for LinkedIn Sales Navigator
-        </SubHeading>
-        <BodyText variant="body1">
+        </Typography>
+        <Typography variant="body1" sx={{ fontFamily: 'Montserrat', maxWidth: '600px', marginBottom: 4 }}>
           We take care of the repetitive tasks so you can focus on selling.
-        </BodyText>
-        <BodyText variant="body1" sx={{ textAlign: 'left' }}>
+        </Typography>
+        <Typography variant="body1" sx={{ fontFamily: 'Montserrat', maxWidth: '600px', textAlign: 'left', marginBottom: 4 }}>
           - Supercharge your LinkedIn Sales Navigator with AI. <br />
           - Search, qualify and rank leads based on your criteria. <br />
           - Generate and send personalized automatic cold messages, replies, warmup messages, and followups effortlessly.
-        </BodyText>
+        </Typography>
+        <Typography variant="body1" sx={{ fontFamily: 'Montserrat', maxWidth: '600px', marginBottom: 4 }}>
+          We are not just a scraping or automation bot. Our AI gives you insights about your leads and recommends outreach campaigns.
+          Our AI creates campaigns and handles qualification and outreach on schedule every day. When we say fully automated, we mean it!
+        </Typography>
+        <GetStartedButton onClick={handleGetStartedClick}>
+          GET STARTED
+        </GetStartedButton>
       </LandingContent>
     </div>
   );
