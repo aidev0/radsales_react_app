@@ -67,7 +67,7 @@ const Campaigns = () => {
       </Typography>
       <Grid container justifyContent="center">
         {campaigns.map(campaign => (
-          <CampaignCard key={campaign._id} component={Link} to={`/campaign/${campaign._id}`}>
+          <CampaignCard key={campaign._id} component={Link} to={`/chat/${campaign._id}`}>
             <CampaignCardContent>
               <Typography variant="h6" sx={{ fontFamily: 'Montserrat' }}>
                 {campaign.campaign_name}

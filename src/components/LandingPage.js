@@ -110,7 +110,7 @@ function LandingPage() {
             </Grid>
             <Grid item xs={4}>
               <NavLinks>
-                <Button color="inherit" component={Link} to="/your-ai-assistant">
+                <Button color="inherit" component={Link} to="/campaigns">
                   Your AI Assistant
                 </Button>
                 <Button color="inherit" component={Link} to="/pricing">
